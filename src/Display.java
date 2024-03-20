@@ -18,16 +18,14 @@ public class Display implements Displayer {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                Graphics2D g2d = (Graphics2D) g;
                 for (Shape shape : shapes) {
-                    shape.draw(g2d);
+                    shape.draw();
                 }
             }
         };
 
         frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Bouncers");
         frame.pack();
         frame.setVisible(true);
     }
@@ -53,16 +51,6 @@ public class Display implements Displayer {
             }
             shapes.add(shape);
         }
-    }
-
-    public void moveShapes() {
-        Timer timer = new Timer(30, e -> {
-            for (Shape shape : shapes) {
-                shape.move(width, height);
-            }
-            panel.repaint();
-        });
-        timer.start();
     }
 
     public void setWidth(int width) {
@@ -93,6 +81,13 @@ public class Display implements Displayer {
     @Override
     public void repaint() {
         panel.repaint();
+        Image image = panel.createImage(width, height);
+        Graphics2D g2d = (Graphics2D) image.getGraphics();
+        for (Shape shape : shapes) {
+            shape.move();
+            shape.draw();
+        }
+        g2d.drawImage(image, 0, 0, null);
     }
 
     @Override

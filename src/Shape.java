@@ -23,18 +23,18 @@ public class Shape {
         this.color = color;
     }
 
-    public void move(int maxWidth, int maxHeight) {
+    public void move() {
         x += dx;
         y += dy;
 
-        if (x <= 0 || x >= maxWidth - width) {
+        if (x <= 0 || x >= Display.getInstance().getWidth() - width) {
             dx = -dx;
         }
-        if (y <= 0 || y >= maxHeight - height) {
+        if (y <= 0 || y >= Display.getInstance().getHeight() - height) {
             dy = -dy;
         }
     }
 
-    public void draw(Graphics2D g2d) {
-        g2d.setColor(color);}
+    public void draw() {
+        Display.getInstance().getGraphics().setColor(color);}
 }

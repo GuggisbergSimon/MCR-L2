@@ -11,8 +11,8 @@ public class Circle extends Shape {
     }
 
     @Override
-    public void draw(Graphics2D g2d) {
-        super.draw(g2d);
-        g2d.fillOval(x, y, width, height);
+    public void draw() {
+        super.draw();
+        Display.getInstance().getGraphics().fillOval(x, y, width, height);
     }
 }

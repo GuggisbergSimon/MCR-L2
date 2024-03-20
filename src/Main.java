@@ -1,3 +1,4 @@
+import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,6 +22,11 @@ public class Main {
         instance.setHeight(height);
         instance.createShape(nbCircles, new Circle());
         instance.createShape(nbSquares, new Square());
-        instance.moveShapes();
+        instance.setTitle("Bouncers");
+
+        Timer timer = new Timer(30, e -> {
+            instance.repaint();
+        });
+        timer.start();
     }
 }
