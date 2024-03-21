@@ -1,3 +1,5 @@
+package singleton;
+
 import java.awt.*;
 public interface Displayer {
     int getWidth();
