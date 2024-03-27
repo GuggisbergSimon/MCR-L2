@@ -21,15 +21,7 @@ public class Display implements Displayer {
     private Display() {
         super();
         frame = new JFrame();
-        panel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                for (Shape shape : shapes) {
-                    //shape.draw();
-                }
-            }
-        };
+        panel = new JPanel();
 
         frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,10 +59,6 @@ public class Display implements Displayer {
         panel.repaint();
         Image image = panel.createImage(width, height);
         Graphics2D g2d = (Graphics2D) image.getGraphics();
-        for (Shape shape : shapes) {
-            //shape.move();
-            //shape.draw();
-        }
         g2d.drawImage(image, 0, 0, null);
     }
 
