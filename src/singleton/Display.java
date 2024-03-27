@@ -2,6 +2,8 @@ package singleton;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 
 public class Display implements Displayer {
@@ -11,6 +13,8 @@ public class Display implements Displayer {
     private final ArrayList<Shape> shapes = new ArrayList<>();
     private int width = 800;
     private int height = 600;
+    private final Image image;
+    private Graphics2D g2d;
 
     public static Display getInstance() {
         if (instance == null)
@@ -24,19 +28,37 @@ public class Display implements Displayer {
         panel = new JPanel();
 
         frame.add(panel);
+        frame.setLayout(new FlowLayout(FlowLayout.LEADING));
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        frame.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                width = frame.getContentPane().getWidth();
+                height = frame.getContentPane().getHeight();
+                g2d = (Graphics2D) panel.getGraphics();
+            }
+        });
+
+        panel.setLayout(new BorderLayout());
+        image = panel.createImage(width, height);
+        g2d = (Graphics2D) panel.getGraphics();
     }
 
     public void setWidth(int width) {
         this.width = width;
         frame.setSize(width, height);
+        panel.setPreferredSize(new Dimension(width, height));
+        g2d = (Graphics2D) panel.getGraphics();
     }
 
     public void setHeight(int height) {
         this.height = height;
         frame.setSize(width, height);
+        panel.setPreferredSize(new Dimension(width, height));
+        g2d = (Graphics2D) panel.getGraphics();
     }
 
     @Override
@@ -51,15 +73,12 @@ public class Display implements Displayer {
 
     @Override
     public Graphics2D getGraphics() {
-        return (Graphics2D) panel.getGraphics();
+        return g2d;
     }
 
     @Override
     public void repaint() {
-        panel.repaint();
-        Image image = panel.createImage(width, height);
-        Graphics2D g2d = (Graphics2D) image.getGraphics();
-        g2d.drawImage(image, 0, 0, null);
+        panel.getGraphics().drawImage(image, 0, 0, null);
     }
 
     @Override

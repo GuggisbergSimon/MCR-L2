@@ -49,9 +49,10 @@ public class Bouncers {
     }
 
     public void run() {
-        Timer timer = new Timer(30, e -> {
+        Timer timer = new Timer(15, e -> {
             for (Bouncable b : bouncers) {
                 b.move();
+                b.draw();
             }
             Display.getInstance().repaint();
         });
