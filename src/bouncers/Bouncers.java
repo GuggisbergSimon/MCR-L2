@@ -14,32 +14,35 @@ public class Bouncers {
     private static final int width = 800;
     private static final int height = 600;
     private final LinkedList<Bouncable> bouncers = new LinkedList<>();
+    private Timer timer;
 
     public Bouncers() {
         Display instance = Display.getInstance();
-        instance.setWidth(width);
-        instance.setHeight(height);
+        instance.initSize(width, height);
+        instance.setTitle("Bouncers");
 
         KeyAdapter keyAdapter = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
                 switch (e.getKeyChar()) {
-                    case 'e' : {
-                        // TODO effacer l'affichage
+                    case 'e': {
+                        bouncers.clear();
                     }
-                    case 'b' : {
+                    case 'b': {
                         // TODO générer 10 cercles et 10 carrés avec bordure
                     }
-                    case 'f' : {
+                    case 'f': {
                         // TODO  générer 10 cercles et 10 carrés pleins
                     }
-                    case 'q' : {
-                        // TODO quitter le programme
+                    case 'q': {
+                        timer.stop();
+                        instance.close();
                     }
                 }
             }
         };
+        instance.addKeyListener(keyAdapter);
 
         //TODO factory
         for (int i = 0; i < 10; i++) {
@@ -49,7 +52,7 @@ public class Bouncers {
     }
 
     public void run() {
-        Timer timer = new Timer(15, e -> {
+       timer = new Timer(10, e -> {
             for (Bouncable b : bouncers) {
                 b.move();
                 b.draw();

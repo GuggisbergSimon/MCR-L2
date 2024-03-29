@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.KeyAdapter;
 import java.util.ArrayList;
 
 public class Display implements Displayer {
@@ -13,7 +14,7 @@ public class Display implements Displayer {
     private final ArrayList<Shape> shapes = new ArrayList<>();
     private int width = 800;
     private int height = 600;
-    private final Image image;
+    private Image image;
     private Graphics2D g2d;
 
     public static Display getInstance() {
@@ -33,32 +34,16 @@ public class Display implements Displayer {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        frame.setFocusable(true);
+        frame.requestFocusInWindow();
         frame.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                width = frame.getContentPane().getWidth();
-                height = frame.getContentPane().getHeight();
-                g2d = (Graphics2D) panel.getGraphics();
+                setSize(frame.getContentPane().getWidth(), frame.getContentPane().getHeight());
             }
         });
 
         panel.setLayout(new BorderLayout());
-        image = panel.createImage(width, height);
-        g2d = (Graphics2D) panel.getGraphics();
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-        frame.setSize(width, height);
-        panel.setPreferredSize(new Dimension(width, height));
-        g2d = (Graphics2D) panel.getGraphics();
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-        frame.setSize(width, height);
-        panel.setPreferredSize(new Dimension(width, height));
-        g2d = (Graphics2D) panel.getGraphics();
     }
 
     @Override
@@ -71,6 +56,30 @@ public class Display implements Displayer {
         return height;
     }
 
+    public void initSize(int width, int height) {
+        frame.setSize(width, height);
+        setSize(width, height);
+    }
+
+    public void addKeyListener(KeyAdapter keyAdapter) {
+        frame.addKeyListener(keyAdapter);
+    }
+
+    public void close() {
+        frame.dispose();
+    }
+
+    private void setSize(int width, int height) {
+        this.width = width;
+        this.height = height;
+        panel.setPreferredSize(new Dimension(width, height));
+        if (image != null) {
+            image.flush();
+        }
+        image = panel.createImage(width, height);
+        g2d = (Graphics2D) image.getGraphics();
+    }
+
     @Override
     public Graphics2D getGraphics() {
         return g2d;
@@ -79,6 +88,7 @@ public class Display implements Displayer {
     @Override
     public void repaint() {
         panel.getGraphics().drawImage(image, 0, 0, null);
+        image.getGraphics().clearRect(0, 0, width, height);
     }
 
     @Override

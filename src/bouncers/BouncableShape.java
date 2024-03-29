@@ -34,13 +34,14 @@ public abstract class BouncableShape implements Bouncable {
     public void move() {
         x += dx;
         y += dy;
-        //TODO fix bouncing as it is inaccurate
         int halfSize = size / 2;
         if (x - halfSize < 0 || x + halfSize > Display.getInstance().getWidth()) {
             dx = -dx;
+            x = x - halfSize < 0 ? halfSize : Display.getInstance().getWidth() - halfSize;
         }
         if (y - halfSize < 0 || y + halfSize > Display.getInstance().getHeight()) {
             dy = -dy;
+            y = y - halfSize < 0 ? halfSize : Display.getInstance().getHeight() - halfSize;
         }
     }
 
