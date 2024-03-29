@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface Displayer{
+}
+
+class Display{
+}
+
+class Bouncers{
+}
+
+interface Bouncable{
+}
+
+class BouncableShape{
+}
+
+class Square{
+}
+
+class Circle{
+}
+
+class CircleFilled{
+}
+
+class CircleStroke{
+}
+
+class SquareFilled{
+}
+
+class SquareStroke{
+}
+
+Displayer --> Display
+Bouncers --> Display
+
+Bouncable --> BouncableShape
+BouncableShape <|-down- Square
+BouncableShape <|-down- Circle
+Circle <|-down- CircleFilled
+Square <|-down- SquareFilled
+Circle <|-down- CircleStroke
+Square <|-down- SquareStroke
+
+@enduml

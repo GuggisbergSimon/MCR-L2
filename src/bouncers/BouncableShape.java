@@ -20,8 +20,12 @@ public abstract class BouncableShape implements Bouncable {
         this.y = y;
         this.size = size;
         this.color = color;
-        dx = random.nextInt(-maxSpeed, maxSpeed);
-        dy = random.nextInt(-maxSpeed, maxSpeed);
+        dx = generateSpeed();
+        dy = generateSpeed();
+    }
+
+    private static int generateSpeed() {
+        return random.nextInt(1, maxSpeed) * (random.nextBoolean() ? 1 : -1);
     }
 
     @Override

@@ -13,13 +13,14 @@ public class Bouncers {
     private static final Random random = new Random();
     private static final int width = 800;
     private static final int height = 600;
+    private static final String title = "Bouncers";
     private final LinkedList<Bouncable> bouncers = new LinkedList<>();
     private Timer timer;
 
     public Bouncers() {
         Display instance = Display.getInstance();
         instance.initSize(width, height);
-        instance.setTitle("Bouncers");
+        instance.setTitle(title);
 
         KeyAdapter keyAdapter = new KeyAdapter() {
             @Override
@@ -46,8 +47,10 @@ public class Bouncers {
 
         //TODO factory
         for (int i = 0; i < 10; i++) {
-            bouncers.add(new CircleFilled(random.nextInt(width), random.nextInt(height), random.nextInt(50), Color.RED));
-            bouncers.add(new CircleStroke(random.nextInt(width), random.nextInt(height), random.nextInt(50), Color.BLUE));
+            bouncers.add(new SquareFilled(random.nextInt(width), random.nextInt(height), random.nextInt(50), Color.ORANGE));
+            bouncers.add(new CircleFilled(random.nextInt(width), random.nextInt(height), random.nextInt(50), Color.BLUE));
+            bouncers.add(new SquareStroke(random.nextInt(width), random.nextInt(height), random.nextInt(50), Color.RED));
+            bouncers.add(new CircleStroke(random.nextInt(width), random.nextInt(height), random.nextInt(50), Color.GREEN));
         }
     }
 
