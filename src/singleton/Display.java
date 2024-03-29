@@ -5,13 +5,11 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
-import java.util.ArrayList;
 
 public class Display implements Displayer {
     private static Display instance;
     private final JFrame frame;
     private final JPanel panel;
-    private final ArrayList<Shape> shapes = new ArrayList<>();
     private int width = 800;
     private int height = 600;
     private Image image;
@@ -24,11 +22,17 @@ public class Display implements Displayer {
     }
 
     private Display() {
+        this(800, 600);
+    }
+
+    private Display(int width, int height) {
         super();
         frame = new JFrame();
         panel = new JPanel();
 
         frame.add(panel);
+        frame.setSize(width, height);
+        setSize(width, height);
         frame.setLayout(new FlowLayout(FlowLayout.LEADING));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,11 +60,9 @@ public class Display implements Displayer {
         return height;
     }
 
-    public void initSize(int width, int height) {
-        frame.setSize(width, height);
-        setSize(width, height);
-    }
 
+
+    @Override
     public void addKeyListener(KeyAdapter keyAdapter) {
         frame.addKeyListener(keyAdapter);
     }

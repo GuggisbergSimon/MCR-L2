@@ -25,6 +25,30 @@ class Circle{
 class CircleFilled{
 }
 
+class FactoryShape
+
+interface Factory {
+}
+
+Bouncers --> Factory
+
+Factory <- FactoryShape
+
+FactoryShape <|-down- FactoryFilled
+FactoryShape <|-down- FactoryStroke
+FactoryFilled -> CircleFilled
+FactoryFilled -> SquareFilled
+
+
+FactoryStroke -> CircleStroke
+FactoryStroke -> SquareStroke
+
+class FactoryFilled {
+}
+
+class FactoryStroke {
+}
+
 class CircleStroke{
 }
 
