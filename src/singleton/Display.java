@@ -10,8 +10,10 @@ public class Display implements Displayer {
     private static Display instance;
     private final JFrame frame;
     private final JPanel panel;
-    private int width = 800;
-    private int height = 600;
+    private static final int init_width = 800;
+    private static final int init_height = 600;
+    private int width;
+    private int height;
     private Image image;
     private Graphics2D g2d;
 
@@ -22,17 +24,14 @@ public class Display implements Displayer {
     }
 
     private Display() {
-        this(800, 600);
+        this(init_width, init_height);
     }
 
     private Display(int width, int height) {
         super();
         frame = new JFrame();
         panel = new JPanel();
-
         frame.add(panel);
-        frame.setSize(width, height);
-        setSize(width, height);
         frame.setLayout(new FlowLayout(FlowLayout.LEADING));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,6 +47,8 @@ public class Display implements Displayer {
         });
 
         panel.setLayout(new BorderLayout());
+        frame.setSize(width, height);
+        setSize(width, height);
     }
 
     @Override
@@ -59,8 +60,6 @@ public class Display implements Displayer {
     public int getHeight() {
         return height;
     }
-
-
 
     @Override
     public void addKeyListener(KeyAdapter keyAdapter) {
