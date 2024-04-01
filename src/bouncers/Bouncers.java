@@ -39,16 +39,16 @@ public class Bouncers {
                 switch (e.getKeyChar()) {
                     case 'e': {
                         bouncers.clear();
-                        break;
                     }
+                    break;
                     case 'b': {
-                        // TODO générer 10 cercles et 10 carrés avec bordure
-                        break;
+                        generateShapes(new StrokeFactory());
                     }
+                    break;
                     case 'f': {
-                        // TODO  générer 10 cercles et 10 carrés pleins
-                        break;
+                        generateShapes(new FilledFactory());
                     }
+                    break;
                     case 'q': {
                         timer.stop();
                         instance.close();
@@ -59,15 +59,14 @@ public class Bouncers {
         };
         instance.addKeyListener(keyAdapter);
 
-        //TODO in Square/Circle/Filled/Stroke override getColor with defined ones as seen below
-        //TODO factory
+    }
+
+    private void generateShapes(ShapeFactory factory) {
         int width = 800;
         int height = 600;
-        for (int i = 0; i < 10; i++) {
-            bouncers.add(new SquareFilled(random.nextInt(width), random.nextInt(height), random.nextInt(50)));
-            bouncers.add(new CircleFilled(random.nextInt(width), random.nextInt(height), random.nextInt(50)));
-            bouncers.add(new SquareStroke(random.nextInt(width), random.nextInt(height), random.nextInt(50)));
-            bouncers.add(new CircleStroke(random.nextInt(width), random.nextInt(height), random.nextInt(50)));
+        for(int i = 0; i < 10;++i) {
+            bouncers.add(factory.createSquare(random.nextInt(width), random.nextInt(height), random.nextInt(50)));
+            bouncers.add(factory.createCircle(random.nextInt(width), random.nextInt(height), random.nextInt(50)));
         }
     }
 
