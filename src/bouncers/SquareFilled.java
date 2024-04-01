@@ -5,8 +5,8 @@ import singleton.Display;
 import java.awt.*;
 
 public class SquareFilled extends Square {
-    public SquareFilled(int x, int y, int size, Color color) {
-        super(x, y, size, color);
+    public SquareFilled(int x, int y, int size) {
+        super(x, y, size,  Color.ORANGE);
     }
 
     @Override

@@ -6,6 +6,9 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
 
+/**
+ * Singleton class for the Display.
+ */
 public class Display implements Displayer {
     private static Display instance;
     private final JFrame frame;
@@ -17,16 +20,30 @@ public class Display implements Displayer {
     private Image image;
     private Graphics2D g2d;
 
+    /**
+     * Get the instance of the Display
+     *
+     * @return the instance
+     */
     public static Display getInstance() {
         if (instance == null)
             instance = new Display();
         return instance;
     }
 
+    /**
+     * Creates a new Display object.
+     */
     private Display() {
         this(init_width, init_height);
     }
 
+    /**
+     * Creates a new Display object.
+     *
+     * @param width  the width
+     * @param height the height
+     */
     private Display(int width, int height) {
         super();
         frame = new JFrame();
@@ -66,10 +83,19 @@ public class Display implements Displayer {
         frame.addKeyListener(keyAdapter);
     }
 
+    /**
+     * Close the display
+     */
     public void close() {
         frame.dispose();
     }
 
+    /**
+     * Set the size of the display
+     *
+     * @param width  the width
+     * @param height the height
+     */
     private void setSize(int width, int height) {
         this.width = width;
         this.height = height;

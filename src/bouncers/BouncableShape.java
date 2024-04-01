@@ -5,6 +5,9 @@ import singleton.Display;
 import java.awt.*;
 import java.util.Random;
 
+/**
+ * Abstract class for a bouncable shape.
+ */
 public abstract class BouncableShape implements Bouncable {
     private static final Random random = new Random();
     private static final int maxSpeed = 5;
@@ -15,16 +18,29 @@ public abstract class BouncableShape implements Bouncable {
     private int dy;
     protected int size;
 
+    /**
+     * Creates a new BouncableShape object.
+     *
+     * @param x     the x coordinate
+     * @param y     the y coordinate
+     * @param size  the size
+     * @param color the color
+     */
     public BouncableShape(int x, int y, int size, Color color) {
         this.x = x;
         this.y = y;
         this.size = size;
         this.color = color;
-        dx = generateSpeed();
-        dy = generateSpeed();
+        dx = getRandomSpeed();
+        dy = getRandomSpeed();
     }
 
-    private static int generateSpeed() {
+    /**
+     * Get a random speed in ]-maxSpeed, -1] U [1, maxSpeed[
+     *
+     * @return the random speed
+     */
+    private static int getRandomSpeed() {
         return random.nextInt(1, maxSpeed) * (random.nextBoolean() ? 1 : -1);
     }
 
