@@ -73,7 +73,7 @@ public class Display implements Displayer {
     private void setSize(int width, int height) {
         this.width = width;
         this.height = height;
-        panel.setPreferredSize(new Dimension(width, height));
+        panel.setSize(width, height);
         if (image != null) {
             image.flush();
         }
