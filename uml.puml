@@ -1,47 +1,97 @@
 @startuml
-'https://plantuml.com/class-diagram
+'https://plantuml.com/class-diagram'
+skinparam classAttributeIconSize 0
+hide circle
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
 
 interface Displayer{
++getWidth():int
++getHeight():int
++getGraphics():Graphics2D
++repaint():void
++setTitle(title:String):void
++addKeyListener(ka:KeyListener):void
 }
 
 class Display{
+-{static} INIT_WIDTH:int
+-{static} INIT_HEIGHT:int
+-{static} instance:Display
+-frame:JFrame
+-panel:JPanel
+-image:Image
+-graphics:Graphics2D
++{static} getInstance():Display
++Display()
++close():void
+-Display(width:int, height:int)
+-setSize(width:int, height:int):void
 }
 
 class Bouncers{
+-{static} TITLE:String
+-{static} NB_SPAWN:int
+-{static} REFRESH_MS:int
++{static} main(args:String[]):void
++Bouncers()
+-generateShapes(factory:ShapeFactory):void
+-run():void
 }
 
 interface Bouncable{
++draw():void
++move():void
++getColor():Color
++getShape():Shape
 }
 
 class BouncableShape{
+-{static} RANDOM:Random
+-{static} MIN_SIZE:int
+-{static} MAX_SIZE:int
+-{static} MIN_SPEED:int
+-{static} MAX_SPEED:int
+-color:Color
+#size:int
+#x:int
+#y:int
+#dx:int
+#dy:int
+-{static} getRandomSpeed():int
++BouncableShape(color:Color)
 }
 
 class Square{
++Square(color:Color)
 }
 
 class Circle{
++Circle(color:Color)
 }
 
 class CircleFilled{
++CircleFilled()
 }
 
-class FactoryShape
-
-interface Factory {
+class SquareFilled{
++SquareFilled()
 }
 
-Bouncers --> Factory
+class CircleStroke{
++CircleStroke()
+}
 
-Factory <- FactoryShape
+class SquareStroke{
++SquareStroke()
+}
 
-FactoryShape <|-down- FactoryFilled
-FactoryShape <|-down- FactoryStroke
-FactoryFilled -> CircleFilled
-FactoryFilled -> SquareFilled
-
-
-FactoryStroke -> CircleStroke
-FactoryStroke -> SquareStroke
+interface ShapeFactory {
++createSquare():Square
++createCircle():Circle
+}
 
 class FactoryFilled {
 }
@@ -49,24 +99,27 @@ class FactoryFilled {
 class FactoryStroke {
 }
 
-class CircleStroke{
-}
+Display -up-|> Displayer
 
-class SquareFilled{
-}
+BouncableShape -up-|> Bouncable
 
-class SquareStroke{
-}
+Square -up-|> BouncableShape
+Circle -up-|> BouncableShape
 
-Displayer --> Display
-Bouncers --> Display
+CircleFilled -up-|> Circle
+CircleStroke -up-|> Circle
 
-Bouncable --> BouncableShape
-BouncableShape <|-down- Square
-BouncableShape <|-down- Circle
-Circle <|-down- CircleFilled
-Square <|-down- SquareFilled
-Circle <|-down- CircleStroke
-Square <|-down- SquareStroke
+SquareFilled -up-|> Square
+SquareStroke -up-|> Square
+
+FactoryFilled -up-|> ShapeFactory
+FactoryStroke -up-|> ShapeFactory
+
+Bouncers "*" -> "1" Display : repaint
+Bouncers "*" -> "2" ShapeFactory : use
+FactoryFilled "1" -> "*" CircleFilled : create
+FactoryFilled "1" -> "*" SquareFilled : create
+FactoryStroke "1" -> "*" CircleStroke : create
+FactoryStroke "1" -> "*" SquareStroke : create
 
 @enduml
