@@ -1,12 +1,13 @@
-package bouncers;
+package bouncable.stroke;
 
+import bouncable.Square;
 import singleton.Display;
 
 import java.awt.*;
 
-public class CircleStroke extends Circle {
-    public CircleStroke(int x, int y, int size) {
-        super(x, y, size, Color.GREEN);
+public class SquareStroke extends Square {
+    public SquareStroke(int x, int y, int size) {
+        super(x, y, size, Color.RED);
     }
 
     @Override

@@ -2,15 +2,17 @@
  * @author Simon Guggisberg
  * @author Patrick Furrer
  * @version 1.0
+ * @description Application that creates a window and draws shapes that bounce around in it.
  * @since 2024-03-21
  */
 
-package bouncers;
+//TODO do uml
 
+import bouncable.Bouncable;
+import factory.*;
 import singleton.Display;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
@@ -20,8 +22,12 @@ import java.util.Random;
  * Main class for the Bouncers program.
  */
 public class Bouncers {
-    private static final Random random = new Random();
-    private static final String title = "Bouncers";
+    private static final Random RANDOM = new Random();
+    private static final String TITLE = "Bouncers";
+    private static final int MIN_SIZE = 1;
+    private static final int MAX_SIZE = 50;
+    private static final int NB_SPAWN = 10;
+    private static final int REFRESH_MS = 10;
     private final LinkedList<Bouncable> bouncers = new LinkedList<>();
     private Timer timer;
 
@@ -30,7 +36,7 @@ public class Bouncers {
      */
     public Bouncers() {
         Display instance = Display.getInstance();
-        instance.setTitle(title);
+        instance.setTitle(TITLE);
 
         KeyAdapter keyAdapter = new KeyAdapter() {
             @Override
@@ -61,12 +67,17 @@ public class Bouncers {
 
     }
 
+    /**
+     * Generates circles and squares and adds them to the list of bouncers.
+     *
+     * @param factory the factory to use
+     */
     private void generateShapes(ShapeFactory factory) {
-        int width = 800;
-        int height = 600;
-        for(int i = 0; i < 10;++i) {
-            bouncers.add(factory.createSquare(random.nextInt(width), random.nextInt(height), random.nextInt(50)));
-            bouncers.add(factory.createCircle(random.nextInt(width), random.nextInt(height), random.nextInt(50)));
+        int width = Display.getInstance().getWidth();
+        int height = Display.getInstance().getHeight();
+        for (int i = 0; i < NB_SPAWN; ++i) {
+            bouncers.add(factory.createSquare(RANDOM.nextInt(width), RANDOM.nextInt(height), RANDOM.nextInt(MIN_SIZE, MAX_SIZE)));
+            bouncers.add(factory.createCircle(RANDOM.nextInt(width), RANDOM.nextInt(height), RANDOM.nextInt(MIN_SIZE, MAX_SIZE)));
         }
     }
 
@@ -74,7 +85,7 @@ public class Bouncers {
      * Creates a timer and starts it.
      */
     public void run() {
-        timer = new Timer(10, e -> {
+        timer = new Timer(REFRESH_MS, e -> {
             for (Bouncable b : bouncers) {
                 b.move();
                 b.draw();

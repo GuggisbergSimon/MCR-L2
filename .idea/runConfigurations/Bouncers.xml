@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Bouncers" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="bouncers.Bouncers" />
+    <option name="MAIN_CLASS_NAME" value="Bouncers" />
     <module name="MCR-L2" />
     <method v="2">
       <option name="Make" enabled="true" />

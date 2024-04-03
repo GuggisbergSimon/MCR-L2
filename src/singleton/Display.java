@@ -10,13 +10,11 @@ import java.awt.event.KeyAdapter;
  * Singleton class for the Display.
  */
 public class Display implements Displayer {
+    private static final int INIT_WIDTH = 800;
+    private static final int INIT_HEIGHT = 600;
     private static Display instance;
     private final JFrame frame;
     private final JPanel panel;
-    private static final int init_width = 800;
-    private static final int init_height = 600;
-    private int width;
-    private int height;
     private Image image;
     private Graphics2D g2d;
 
@@ -35,7 +33,7 @@ public class Display implements Displayer {
      * Creates a new Display object.
      */
     private Display() {
-        this(init_width, init_height);
+        this(INIT_WIDTH, INIT_HEIGHT);
     }
 
     /**
@@ -59,6 +57,7 @@ public class Display implements Displayer {
         frame.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
+                //TODO bug when resizing, sometimes only a blank image is displayed
                 setSize(frame.getContentPane().getWidth(), frame.getContentPane().getHeight());
             }
         });
@@ -70,12 +69,12 @@ public class Display implements Displayer {
 
     @Override
     public int getWidth() {
-        return width;
+        return frame.getContentPane().getWidth();
     }
 
     @Override
     public int getHeight() {
-        return height;
+        return frame.getContentPane().getHeight();
     }
 
     @Override
@@ -83,6 +82,7 @@ public class Display implements Displayer {
         frame.addKeyListener(keyAdapter);
     }
 
+    //TODO can we add this method ? not part of the Displayer interface
     /**
      * Close the display
      */
@@ -97,8 +97,6 @@ public class Display implements Displayer {
      * @param height the height
      */
     private void setSize(int width, int height) {
-        this.width = width;
-        this.height = height;
         panel.setSize(width, height);
         if (image != null) {
             image.flush();
@@ -115,7 +113,7 @@ public class Display implements Displayer {
     @Override
     public void repaint() {
         panel.getGraphics().drawImage(image, 0, 0, null);
-        image.getGraphics().clearRect(0, 0, width, height);
+        image.getGraphics().clearRect(0, 0, frame.getContentPane().getWidth(), frame.getHeight());
     }
 
     @Override

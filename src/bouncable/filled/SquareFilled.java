@@ -1,5 +1,6 @@
-package bouncers;
+package bouncable.filled;
 
+import bouncable.Square;
 import singleton.Display;
 
 import java.awt.*;

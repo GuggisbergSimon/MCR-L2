@@ -1,4 +1,4 @@
-package bouncers;
+package bouncable;
 
 import java.awt.*;
 

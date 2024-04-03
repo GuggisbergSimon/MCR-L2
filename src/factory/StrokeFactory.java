@@ -1,4 +1,8 @@
-package bouncers;
+package factory;
+
+import bouncable.Circle;
+import bouncable.Square;
+import bouncable.stroke.*;
 
 public class StrokeFactory implements ShapeFactory {
     @Override

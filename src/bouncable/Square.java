@@ -1,4 +1,6 @@
-package bouncers;
+package bouncable;
+
+import bouncable.BouncableShape;
 
 import java.awt.*;
 import java.awt.geom.*;

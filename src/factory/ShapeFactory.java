@@ -1,5 +1,7 @@
-package bouncers;
+package factory;
 
+import bouncable.Circle;
+import bouncable.Square;
 
 public interface ShapeFactory {
 

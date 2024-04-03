@@ -1,4 +1,4 @@
-package bouncers;
+package bouncable;
 
 import singleton.Display;
 
@@ -9,14 +9,14 @@ import java.util.Random;
  * Abstract class for a bouncable shape.
  */
 public abstract class BouncableShape implements Bouncable {
-    private static final Random random = new Random();
-    private static final int maxSpeed = 5;
+    private static final Random RANDOM = new Random();
+    private static final int MAX_SPEED = 5;
     private final Color color;
+    protected int size;
     protected int x;
     protected int y;
     private int dx;
     private int dy;
-    protected int size;
 
     /**
      * Creates a new BouncableShape object.
@@ -41,7 +41,7 @@ public abstract class BouncableShape implements Bouncable {
      * @return the random speed
      */
     private static int getRandomSpeed() {
-        return random.nextInt(1, maxSpeed) * (random.nextBoolean() ? 1 : -1);
+        return RANDOM.nextInt(1, MAX_SPEED) * (RANDOM.nextBoolean() ? 1 : -1);
     }
 
     @Override
@@ -54,6 +54,7 @@ public abstract class BouncableShape implements Bouncable {
     public void move() {
         x += dx;
         y += dy;
+        //TODO improve bounce as it isn't exactly on window border
         int halfSize = size / 2;
         if (x - halfSize < 0 || x + halfSize > Display.getInstance().getWidth()) {
             dx = -dx;
