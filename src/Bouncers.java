@@ -22,10 +22,7 @@ import java.util.Random;
  * Main class for the Bouncers program.
  */
 public class Bouncers {
-    private static final Random RANDOM = new Random();
     private static final String TITLE = "Bouncers";
-    private static final int MIN_SIZE = 1;
-    private static final int MAX_SIZE = 50;
     private static final int NB_SPAWN = 10;
     private static final int REFRESH_MS = 10;
     private final LinkedList<Bouncable> bouncers = new LinkedList<>();
@@ -76,8 +73,8 @@ public class Bouncers {
         int width = Display.getInstance().getWidth();
         int height = Display.getInstance().getHeight();
         for (int i = 0; i < NB_SPAWN; ++i) {
-            bouncers.add(factory.createSquare(RANDOM.nextInt(width), RANDOM.nextInt(height), RANDOM.nextInt(MIN_SIZE, MAX_SIZE)));
-            bouncers.add(factory.createCircle(RANDOM.nextInt(width), RANDOM.nextInt(height), RANDOM.nextInt(MIN_SIZE, MAX_SIZE)));
+            bouncers.add(factory.createSquare());
+            bouncers.add(factory.createCircle());
         }
     }
 

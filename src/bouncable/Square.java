@@ -7,8 +7,8 @@ import java.awt.geom.*;
 
 public abstract class Square extends BouncableShape {
 
-    public Square(int x, int y, int size, Color color) {
-        super(x, y, size, color);
+    public Square(Color color) {
+        super(color);
     }
 
     @Override

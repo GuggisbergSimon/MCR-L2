@@ -83,6 +83,7 @@ public class Display implements Displayer {
     }
 
     //TODO can we add this method ? not part of the Displayer interface
+
     /**
      * Close the display
      */

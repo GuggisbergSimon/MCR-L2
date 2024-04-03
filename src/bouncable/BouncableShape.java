@@ -10,6 +10,9 @@ import java.util.Random;
  */
 public abstract class BouncableShape implements Bouncable {
     private static final Random RANDOM = new Random();
+    private static final int MIN_SIZE = 1;
+    private static final int MAX_SIZE = 50;
+    private static final int MIN_SPEED = 1;
     private static final int MAX_SPEED = 5;
     private final Color color;
     protected int size;
@@ -21,15 +24,12 @@ public abstract class BouncableShape implements Bouncable {
     /**
      * Creates a new BouncableShape object.
      *
-     * @param x     the x coordinate
-     * @param y     the y coordinate
-     * @param size  the size
      * @param color the color
      */
-    public BouncableShape(int x, int y, int size, Color color) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
+    public BouncableShape(Color color) {
+        this.x = RANDOM.nextInt(Display.getInstance().getWidth());
+        this.y = RANDOM.nextInt(Display.getInstance().getHeight());
+        this.size = RANDOM.nextInt(MIN_SIZE, MAX_SIZE);
         this.color = color;
         dx = getRandomSpeed();
         dy = getRandomSpeed();
@@ -41,7 +41,7 @@ public abstract class BouncableShape implements Bouncable {
      * @return the random speed
      */
     private static int getRandomSpeed() {
-        return RANDOM.nextInt(1, MAX_SPEED) * (RANDOM.nextBoolean() ? 1 : -1);
+        return RANDOM.nextInt(MIN_SPEED, MAX_SPEED) * (RANDOM.nextBoolean() ? 1 : -1);
     }
 
     @Override

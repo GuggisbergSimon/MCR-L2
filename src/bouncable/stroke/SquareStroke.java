@@ -6,8 +6,8 @@ import singleton.Display;
 import java.awt.*;
 
 public class SquareStroke extends Square {
-    public SquareStroke(int x, int y, int size) {
-        super(x, y, size, Color.RED);
+    public SquareStroke() {
+        super(Color.RED);
     }
 
     @Override
