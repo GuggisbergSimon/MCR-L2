@@ -7,7 +7,7 @@ hide circle
 top to bottom direction
 skinparam linetype ortho
 
-interface Displayer{
+interface Displayer {
 +getWidth():int
 +getHeight():int
 +getGraphics():Graphics2D
@@ -16,7 +16,7 @@ interface Displayer{
 +addKeyListener(ka:KeyListener):void
 }
 
-class Display{
+class Display {
 -{static} INIT_WIDTH:int
 -{static} INIT_HEIGHT:int
 -{static} instance:Display
@@ -31,7 +31,19 @@ class Display{
 -setSize(width:int, height:int):void
 }
 
-class Bouncers{
+interface Renderer {
++void display(g:Graphics2D, b:Bouncable):void
+}
+
+abstract class AbstractRenderer
+
+class BorderRenderer {
+-{static} STROKE_WIDTH:int
+}
+
+class FilledRenderer
+
+class Bouncers {
 -{static} TITLE:String
 -{static} NB_SPAWN:int
 -{static} REFRESH_MS:int
@@ -41,14 +53,14 @@ class Bouncers{
 -run():void
 }
 
-interface Bouncable{
+interface Bouncable {
 +draw():void
 +move():void
 +getColor():Color
 +getShape():Shape
 }
 
-class BouncableShape{
+class BouncableShape {
 -{static} RANDOM:Random
 -{static} MIN_SIZE:int
 -{static} MAX_SIZE:int
@@ -64,27 +76,27 @@ class BouncableShape{
 +BouncableShape(color:Color)
 }
 
-class Square{
+class Square {
 +Square(color:Color)
 }
 
-class Circle{
+class Circle {
 +Circle(color:Color)
 }
 
-class CircleFilled{
+class CircleFilled {
 +CircleFilled()
 }
 
-class SquareFilled{
+class SquareFilled {
 +SquareFilled()
 }
 
-class CircleStroke{
+class CircleBorder {
 +CircleStroke()
 }
 
-class SquareStroke{
+class SquareBorder {
 +SquareStroke()
 }
 
@@ -96,10 +108,14 @@ interface ShapeFactory {
 class FactoryFilled {
 }
 
-class FactoryStroke {
+class FactoryBorder {
 }
 
 Display -up-|> Displayer
+
+AbstractRenderer -up-|> Renderer
+BorderRenderer -up-|> AbstractRenderer
+FilledRenderer -up-|> AbstractRenderer
 
 BouncableShape -up-|> Bouncable
 
@@ -107,19 +123,21 @@ Square -up-|> BouncableShape
 Circle -up-|> BouncableShape
 
 CircleFilled -up-|> Circle
-CircleStroke -up-|> Circle
+CircleBorder -up-|> Circle
 
 SquareFilled -up-|> Square
-SquareStroke -up-|> Square
+SquareBorder -up-|> Square
 
 FactoryFilled -up-|> ShapeFactory
-FactoryStroke -up-|> ShapeFactory
+FactoryBorder -up-|> ShapeFactory
 
 Bouncers "*" -> "1" Display : repaint
+Display "1" -> "1" BorderRenderer : references
+Display "1" -> "1" FilledRenderer : references
 Bouncers "*" -> "2" ShapeFactory : use
 FactoryFilled "1" -> "*" CircleFilled : create
 FactoryFilled "1" -> "*" SquareFilled : create
-FactoryStroke "1" -> "*" CircleStroke : create
-FactoryStroke "1" -> "*" SquareStroke : create
+FactoryBorder "1" -> "*" CircleBorder : create
+FactoryBorder "1" -> "*" SquareBorder : create
 
 @enduml

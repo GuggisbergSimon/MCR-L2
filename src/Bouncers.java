@@ -70,8 +70,6 @@ public class Bouncers {
      * @param factory the factory to use
      */
     private void generateShapes(ShapeFactory factory) {
-        int width = Display.getInstance().getWidth();
-        int height = Display.getInstance().getHeight();
         for (int i = 0; i < NB_SPAWN; ++i) {
             bouncers.add(factory.createSquare());
             bouncers.add(factory.createCircle());
