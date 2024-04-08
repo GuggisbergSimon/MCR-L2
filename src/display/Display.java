@@ -47,7 +47,8 @@ public class Display implements Displayer {
      * @param height the height
      */
     private Display(int width, int height) {
-        super();
+        filledRenderer = new FilledRenderer();
+        borderRenderer = new BorderRenderer();
         frame = new JFrame();
         panel = new JPanel();
         frame.add(panel);
@@ -99,9 +100,6 @@ public class Display implements Displayer {
      * @return the FilledRenderer
      */
     public FilledRenderer getFilledRenderer() {
-        if (filledRenderer == null) {
-            filledRenderer = new FilledRenderer();
-        }
         return filledRenderer;
     }
 
@@ -111,9 +109,6 @@ public class Display implements Displayer {
      * @return the BorderRenderer
      */
     public BorderRenderer getBorderRenderer() {
-        if (borderRenderer == null) {
-            borderRenderer = new BorderRenderer();
-        }
         return borderRenderer;
     }
 

@@ -131,13 +131,13 @@ SquareBorder -up-|> Square
 FactoryFilled -up-|> ShapeFactory
 FactoryBorder -up-|> ShapeFactory
 
-Bouncers "*" -> "1" Display : repaint
-Display "1" -> "1" BorderRenderer : references
-Display "1" -> "1" FilledRenderer : references
-Bouncers "*" -> "2" ShapeFactory : use
-FactoryFilled "1" -> "*" CircleFilled : create
-FactoryFilled "1" -> "*" SquareFilled : create
-FactoryBorder "1" -> "*" CircleBorder : create
-FactoryBorder "1" -> "*" SquareBorder : create
+Bouncers "*" - "1" Display : <repaint
+Display "1" - "1" BorderRenderer : references>
+Display "1" - "1" FilledRenderer : references>
+Bouncers "*" - "2" ShapeFactory : <use
+FactoryFilled "1" - "*" CircleFilled : create>
+FactoryFilled "1" - "*" SquareFilled : create>
+FactoryBorder "1" - "*" CircleBorder : create>
+FactoryBorder "1" - "*" SquareBorder : create>
 
 @enduml
