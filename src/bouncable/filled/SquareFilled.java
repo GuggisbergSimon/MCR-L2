@@ -5,6 +5,11 @@ import display.Display;
 
 import java.awt.*;
 
+
+/**
+ * SquareFilled is a Square that is drawn filled with orange.
+
+ */
 public class SquareFilled extends Square {
     public SquareFilled() {
         super( Color.ORANGE);

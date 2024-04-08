@@ -20,7 +20,7 @@ public class Display implements Displayer {
     private Image image;
     private Graphics2D g2d;
     private FilledRenderer filledRenderer;
-    private StrokeRenderer strokeRenderer;
+    private BorderRenderer borderRenderer;
 
     /**
      * Get the instance of the Display
@@ -93,6 +93,11 @@ public class Display implements Displayer {
         frame.dispose();
     }
 
+    /**
+     * Get the FilledRenderer
+     *
+     * @return the FilledRenderer
+     */
     public FilledRenderer getFilledRenderer() {
         if (filledRenderer == null) {
             filledRenderer = new FilledRenderer();
@@ -100,11 +105,16 @@ public class Display implements Displayer {
         return filledRenderer;
     }
 
-    public StrokeRenderer getStrokeRenderer() {
-        if (strokeRenderer == null) {
-            strokeRenderer = new StrokeRenderer();
+    /**
+     * Get the BorderRenderer
+     *
+     * @return the BorderRenderer
+     */
+    public BorderRenderer getBorderRenderer() {
+        if (borderRenderer == null) {
+            borderRenderer = new BorderRenderer();
         }
-        return strokeRenderer;
+        return borderRenderer;
     }
 
     /**

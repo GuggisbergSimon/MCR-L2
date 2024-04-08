@@ -3,7 +3,7 @@ package bouncable;
 import java.awt.*;
 
 /**
- * Interface for the Bouncable class.
+ * Interface for a bouncable object.
  */
 public interface Bouncable {
     /**

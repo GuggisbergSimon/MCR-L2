@@ -11,6 +11,7 @@
 import bouncable.Bouncable;
 import factory.*;
 import display.Display;
+import factory.BorderFactory;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -44,7 +45,7 @@ public class Bouncers {
                     }
                     break;
                     case 'b': {
-                        generateShapes(new StrokeFactory());
+                        generateShapes(new BorderFactory());
                     }
                     break;
                     case 'f': {
