@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.geom.*;
 
 public abstract class Square extends BouncableShape {
-
     public Square(Color color) {
         super(color);
     }

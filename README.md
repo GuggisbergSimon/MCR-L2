@@ -14,7 +14,7 @@ Définir une application graphique qui permette d'instancier un nombre fixe de c
 - Si un objet rencontre un bord, il doit rebondir.
 
 La classe représentant l'affichage doit mettre en oeuvre
-un singleton et implémenter l'interface Displayer
+un display et implémenter l'interface Displayer
 donnée en ci-dessous.
 
 ```java

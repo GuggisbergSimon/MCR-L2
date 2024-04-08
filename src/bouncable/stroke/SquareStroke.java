@@ -1,7 +1,7 @@
 package bouncable.stroke;
 
 import bouncable.Square;
-import singleton.Display;
+import display.Display;
 
 import java.awt.*;
 
@@ -12,7 +12,6 @@ public class SquareStroke extends Square {
 
     @Override
     public void draw() {
-        Display.getInstance().getGraphics().setStroke(new BasicStroke(2));
-        super.draw();
+        Display.getInstance().getStrokeRenderer().display(Display.getInstance().getGraphics(), this);
     }
 }

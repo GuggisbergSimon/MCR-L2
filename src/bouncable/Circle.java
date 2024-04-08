@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.geom.*;
 
 public abstract class Circle extends BouncableShape {
-
     public Circle(Color color) {
         super(color);
     }

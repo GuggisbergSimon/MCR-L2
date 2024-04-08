@@ -10,13 +10,12 @@
 
 import bouncable.Bouncable;
 import factory.*;
-import singleton.Display;
+import display.Display;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
-import java.util.Random;
 
 /**
  * Main class for the Bouncers program.

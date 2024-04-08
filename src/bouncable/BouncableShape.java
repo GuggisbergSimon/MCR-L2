@@ -1,6 +1,6 @@
 package bouncable;
 
-import singleton.Display;
+import display.Display;
 
 import java.awt.*;
 import java.util.Random;
@@ -42,12 +42,6 @@ public abstract class BouncableShape implements Bouncable {
      */
     private static int getRandomSpeed() {
         return RANDOM.nextInt(MIN_SPEED, MAX_SPEED) * (RANDOM.nextBoolean() ? 1 : -1);
-    }
-
-    @Override
-    public void draw() {
-        Display.getInstance().getGraphics().setColor(color);
-        Display.getInstance().getGraphics().draw(getShape());
     }
 
     @Override

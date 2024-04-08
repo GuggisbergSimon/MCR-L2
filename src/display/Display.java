@@ -1,10 +1,12 @@
-package singleton;
+package display;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
+
+import display.renderer.*;
 
 /**
  * Singleton class for the Display.
@@ -17,6 +19,8 @@ public class Display implements Displayer {
     private final JPanel panel;
     private Image image;
     private Graphics2D g2d;
+    private FilledRenderer filledRenderer;
+    private StrokeRenderer strokeRenderer;
 
     /**
      * Get the instance of the Display
@@ -82,13 +86,25 @@ public class Display implements Displayer {
         frame.addKeyListener(keyAdapter);
     }
 
-    //TODO can we add this method ? not part of the Displayer interface
-
     /**
      * Close the display
      */
     public void close() {
         frame.dispose();
+    }
+
+    public FilledRenderer getFilledRenderer() {
+        if (filledRenderer == null) {
+            filledRenderer = new FilledRenderer();
+        }
+        return filledRenderer;
+    }
+
+    public StrokeRenderer getStrokeRenderer() {
+        if (strokeRenderer == null) {
+            strokeRenderer = new StrokeRenderer();
+        }
+        return strokeRenderer;
     }
 
     /**
