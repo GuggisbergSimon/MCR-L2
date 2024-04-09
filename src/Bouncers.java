@@ -6,7 +6,7 @@
  * @since 2024-03-21
  */
 
-//TODO do uml
+//TODO check uml
 
 import bouncable.Bouncable;
 import factory.*;
@@ -45,6 +45,7 @@ public class Bouncers {
                     }
                     break;
                     case 'b': {
+                        //TODO avoid creating new factory each time ? keep one stored in the class ?
                         generateShapes(new BorderFactory());
                     }
                     break;
