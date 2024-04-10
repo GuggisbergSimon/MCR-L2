@@ -2,6 +2,7 @@ package bouncable.filled;
 
 import bouncable.Circle;
 import display.Display;
+import display.renderer.FilledRenderer;
 
 import java.awt.*;
 
@@ -15,6 +16,6 @@ public class CircleFilled extends Circle {
 
     @Override
     public void draw() {
-        Display.getInstance().getFilledRenderer().display(Display.getInstance().getGraphics(), this);
+        FilledRenderer.getInstance().display(Display.getInstance().getGraphics(), this);
     }
 }

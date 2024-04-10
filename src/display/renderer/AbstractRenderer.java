@@ -1,6 +1,7 @@
 package display.renderer;
 
 import bouncable.Bouncable;
+import display.Display;
 
 import java.awt.*;
 

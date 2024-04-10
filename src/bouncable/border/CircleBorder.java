@@ -2,6 +2,7 @@ package bouncable.border;
 
 import bouncable.Circle;
 import display.Display;
+import display.renderer.BorderRenderer;
 
 import java.awt.*;
 
@@ -15,6 +16,6 @@ public class CircleBorder extends Circle {
 
     @Override
     public void draw() {
-        Display.getInstance().getBorderRenderer().display(Display.getInstance().getGraphics(), this);
+        BorderRenderer.getInstance().display(Display.getInstance().getGraphics(), this);
     }
 }

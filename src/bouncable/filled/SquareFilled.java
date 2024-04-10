@@ -2,6 +2,7 @@ package bouncable.filled;
 
 import bouncable.Square;
 import display.Display;
+import display.renderer.FilledRenderer;
 
 import java.awt.*;
 
@@ -17,6 +18,6 @@ public class SquareFilled extends Square {
 
     @Override
     public void draw() {
-        Display.getInstance().getFilledRenderer().display(Display.getInstance().getGraphics(), this);
+        FilledRenderer.getInstance().display(Display.getInstance().getGraphics(), this);
     }
 }

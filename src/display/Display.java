@@ -28,7 +28,7 @@ public class Display implements Displayer {
      *
      * @return the instance
      */
-    public static Display getInstance() {
+    public static Displayer getInstance() {
         if (instance == null)
             instance = new Display();
         return instance;
@@ -120,6 +120,7 @@ public class Display implements Displayer {
      */
     private void setSize(int width, int height) {
         panel.setSize(width, height);
+        //panel.setPreferredSize(new Dimension(width, height));
         if (image != null) {
             image.flush();
         }

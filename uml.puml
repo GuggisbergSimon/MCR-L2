@@ -25,9 +25,6 @@ class Display {
 -image:Image
 -graphics:Graphics2D
 +{static} getInstance():Display
-+close():void
-+getFilledRenderer : Renderer
-+getBorderRenderer : Renderer
 -Display()
 -Display(width:int, height:int)
 -setSize(width:int, height:int):void
@@ -41,9 +38,14 @@ abstract class AbstractRenderer
 
 class BorderRenderer {
 -{static} STROKE_WIDTH:int
+-{static} instance:Renderer
++{static} getInstance():Renderer
 }
 
-class FilledRenderer
+class FilledRenderer {
+-{static} instance:Renderer
++{static} getInstance():Renderer
+}
 
 class Bouncers {
 -{static} TITLE:String
@@ -133,8 +135,7 @@ SquareBorder -up-|> Square
 FactoryFilled -up-|> ShapeFactory
 FactoryBorder -up-|> ShapeFactory
 
-Display "1" -- "2" Renderer : references>
-Bouncers "1" -- "2" ShapeFactory : uses>
-Bouncable "*" -- "1"Bouncers : is owned>
+Bouncers "1" -- "2" ShapeFactory : uses v
+Bouncable "*" -- "1"Bouncers : is owned v
 
 @enduml

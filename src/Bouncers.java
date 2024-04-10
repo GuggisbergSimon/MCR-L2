@@ -8,6 +8,7 @@
 
 
 import bouncable.Bouncable;
+import display.Displayer;
 import factory.*;
 import display.Display;
 import factory.BorderFactory;
@@ -34,7 +35,7 @@ public class Bouncers {
      * Creates a new Bouncers object.
      */
     private Bouncers() {
-        Display instance = Display.getInstance();
+        Displayer instance = Display.getInstance();
         instance.setTitle(TITLE);
 
         KeyAdapter keyAdapter = new KeyAdapter() {
@@ -55,8 +56,7 @@ public class Bouncers {
                     }
                     break;
                     case 'q': {
-                        timer.stop();
-                        instance.close();
+                        System.exit(0);
                         break;
                     }
                 }
