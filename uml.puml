@@ -25,13 +25,15 @@ class Display {
 -image:Image
 -graphics:Graphics2D
 +{static} getInstance():Display
-+Display()
 +close():void
++getFilledRenderer : Renderer
++getBorderRenderer : Renderer
+-Display()
 -Display(width:int, height:int)
 -setSize(width:int, height:int):void
 }
 
-interface Renderer {
+interface Renderer <<interface>> {
 +void display(g:Graphics2D, b:Bouncable):void
 }
 
@@ -53,14 +55,14 @@ class Bouncers {
 -run():void
 
 }
-interface Bouncable {
+interface Bouncable <<interface>>{
 +draw():void
 +move():void
 +getColor():Color
 +getShape():Shape
 }
 
-class BouncableShape {
+abstract class BouncableShape {
 -{static} RANDOM:Random
 -{static} MIN_SIZE:int
 -{static} MAX_SIZE:int
@@ -76,11 +78,11 @@ class BouncableShape {
 +BouncableShape(color:Color)
 }
 
-class Square {
+abstract class Square {
 +Square(color:Color)
 }
 
-class Circle {
+abstract class Circle {
 +Circle(color:Color)
 }
 
@@ -100,7 +102,7 @@ class SquareBorder {
 +SquareBorder()
 }
 
-interface ShapeFactory {
+interface ShapeFactory <<interface>> {
 +createSquare():Square
 +createCircle():Circle
 }
