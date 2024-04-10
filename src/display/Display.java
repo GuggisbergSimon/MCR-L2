@@ -6,9 +6,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
 
-import display.renderer.*;
-import display.renderer.Renderer;
-
 /**
  * Singleton class for the Display.
  */
@@ -20,8 +17,6 @@ public class Display implements Displayer {
     private final JPanel panel;
     private Image image;
     private Graphics2D g2d;
-    private Renderer filledRenderer;
-    private Renderer borderRenderer;
 
     /**
      * Get the instance of the Display
@@ -48,8 +43,6 @@ public class Display implements Displayer {
      * @param height the height
      */
     private Display(int width, int height) {
-        filledRenderer = new FilledRenderer();
-        borderRenderer = new BorderRenderer();
         frame = new JFrame();
         panel = new JPanel();
         frame.add(panel);
@@ -89,31 +82,6 @@ public class Display implements Displayer {
     }
 
     /**
-     * Close the display
-     */
-    public void close() {
-        frame.dispose();
-    }
-
-    /**
-     * Get the FilledRenderer
-     *
-     * @return the FilledRenderer
-     */
-    public Renderer getFilledRenderer() {
-        return filledRenderer;
-    }
-
-    /**
-     * Get the BorderRenderer
-     *
-     * @return the BorderRenderer
-     */
-    public Renderer getBorderRenderer() {
-        return borderRenderer;
-    }
-
-    /**
      * Set the size of the display
      *
      * @param width  the width
@@ -121,7 +89,6 @@ public class Display implements Displayer {
      */
     private void setSize(int width, int height) {
         panel.setSize(width, height);
-        //panel.setPreferredSize(new Dimension(width, height));
         if (image != null) {
             image.flush();
         }
