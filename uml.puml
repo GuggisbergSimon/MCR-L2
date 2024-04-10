@@ -48,11 +48,11 @@ class Bouncers {
 -{static} NB_SPAWN:int
 -{static} REFRESH_MS:int
 +{static} main(args:String[]):void
-+Bouncers()
+-Bouncers()
 -generateShapes(factory:ShapeFactory):void
 -run():void
-}
 
+}
 interface Bouncable {
 +draw():void
 +move():void
@@ -134,7 +134,8 @@ FactoryBorder -up-|> ShapeFactory
 Bouncers "*" - "1" Display : <repaint
 Display "1" - "1" BorderRenderer : references>
 Display "1" - "1" FilledRenderer : references>
-Bouncers "*" - "2" ShapeFactory : <use
+Bouncers --- FactoryBorder : uses
+Bouncers --- FactoryFilled : uses
 FactoryFilled "1" - "*" CircleFilled : create>
 FactoryFilled "1" - "*" SquareFilled : create>
 FactoryBorder "1" - "*" CircleBorder : create>

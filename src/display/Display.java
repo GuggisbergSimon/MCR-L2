@@ -62,7 +62,6 @@ public class Display implements Displayer {
         frame.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                //TODO bug when resizing, sometimes only a blank image is displayed
                 setSize(frame.getContentPane().getWidth(), frame.getContentPane().getHeight());
             }
         });

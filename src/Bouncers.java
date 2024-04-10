@@ -6,7 +6,6 @@
  * @since 2024-03-21
  */
 
-//TODO check uml
 
 import bouncable.Bouncable;
 import factory.*;
@@ -28,10 +27,13 @@ public class Bouncers {
     private final LinkedList<Bouncable> bouncers = new LinkedList<>();
     private Timer timer;
 
+    private BorderFactory borderFactory;
+    private FilledFactory filledFactory;
+
     /**
      * Creates a new Bouncers object.
      */
-    public Bouncers() {
+    private Bouncers() {
         Display instance = Display.getInstance();
         instance.setTitle(TITLE);
 
@@ -45,12 +47,11 @@ public class Bouncers {
                     }
                     break;
                     case 'b': {
-                        //TODO avoid creating new factory each time ? keep one stored in the class ?
-                        generateShapes(new BorderFactory());
+                        generateShapes(borderFactory);
                     }
                     break;
                     case 'f': {
-                        generateShapes(new FilledFactory());
+                        generateShapes(filledFactory);
                     }
                     break;
                     case 'q': {

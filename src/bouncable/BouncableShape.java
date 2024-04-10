@@ -48,7 +48,6 @@ public abstract class BouncableShape implements Bouncable {
     public void move() {
         x += dx;
         y += dy;
-        //TODO improve bounce as it isn't exactly on window border
         int halfSize = size / 2;
         if (x - halfSize < 0 || x + halfSize > Display.getInstance().getWidth()) {
             dx = -dx;
