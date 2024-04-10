@@ -27,8 +27,8 @@ public class Bouncers {
     private final LinkedList<Bouncable> bouncers = new LinkedList<>();
     private Timer timer;
 
-    private final ShapeFactory borderFactory = new BorderFactory();
-    private final ShapeFactory filledFactory = new FilledFactory();
+    private ShapeFactory borderFactory = new BorderFactory();
+    private ShapeFactory filledFactory = new FilledFactory();
 
     /**
      * Creates a new Bouncers object.

@@ -131,10 +131,8 @@ SquareBorder -up-|> Square
 FactoryFilled -up-|> ShapeFactory
 FactoryBorder -up-|> ShapeFactory
 
-Bouncers "*" - "1" Display : <repaint
-Display "1" - "1" BorderRenderer : references>
-Display "1" - "1" FilledRenderer : references>
+Display "1" - "2" Renderer : references>
 Bouncers "1" - "2" ShapeFactory : uses
-Bouncers "1" - "*" Bouncable : owns
+Bouncable "*" - "1"Bouncers : is owned
 
 @enduml

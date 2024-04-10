@@ -7,6 +7,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
 
 import display.renderer.*;
+import display.renderer.Renderer;
 
 /**
  * Singleton class for the Display.
@@ -19,8 +20,8 @@ public class Display implements Displayer {
     private final JPanel panel;
     private Image image;
     private Graphics2D g2d;
-    private FilledRenderer filledRenderer;
-    private BorderRenderer borderRenderer;
+    private Renderer filledRenderer;
+    private Renderer borderRenderer;
 
     /**
      * Get the instance of the Display
@@ -98,7 +99,7 @@ public class Display implements Displayer {
      *
      * @return the FilledRenderer
      */
-    public FilledRenderer getFilledRenderer() {
+    public Renderer getFilledRenderer() {
         return filledRenderer;
     }
 
@@ -107,7 +108,7 @@ public class Display implements Displayer {
      *
      * @return the BorderRenderer
      */
-    public BorderRenderer getBorderRenderer() {
+    public Renderer getBorderRenderer() {
         return borderRenderer;
     }
 
