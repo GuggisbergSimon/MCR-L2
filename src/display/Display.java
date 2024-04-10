@@ -63,7 +63,8 @@ public class Display implements Displayer {
         frame.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                setSize(frame.getContentPane().getWidth(), frame.getContentPane().getHeight());
+                setSize(frame.getContentPane().getWidth(),
+                        frame.getContentPane().getHeight());
             }
         });
 
@@ -136,7 +137,9 @@ public class Display implements Displayer {
     @Override
     public void repaint() {
         panel.getGraphics().drawImage(image, 0, 0, null);
-        image.getGraphics().clearRect(0, 0, frame.getContentPane().getWidth(), frame.getHeight());
+        image.getGraphics().clearRect(0, 0,
+                frame.getContentPane().getWidth(),
+                frame.getHeight());
     }
 
     @Override

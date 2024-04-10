@@ -3,7 +3,6 @@ package display;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 
-
 /**
  * Displayer is the interface for interacting with a display.
  */

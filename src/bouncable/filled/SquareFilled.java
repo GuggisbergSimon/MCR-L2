@@ -6,10 +6,8 @@ import display.renderer.FilledRenderer;
 
 import java.awt.*;
 
-
 /**
  * SquareFilled is a Square that is drawn filled with orange.
-
  */
 public class SquareFilled extends Square {
     public SquareFilled() {

@@ -5,11 +5,16 @@ import bouncable.Bouncable;
 import java.awt.*;
 
 /**
- * FilledRenderer is a Renderer that draws a Bouncable filled with its color and shape.
+ * FilledRenderer is a Singleton Renderer that draws a Bouncable filled with its color and shape.
  */
 public class FilledRenderer extends AbstractRenderer {
     private static Renderer instance;
 
+    /**
+     * Returns the instance of FilledRenderer.
+     *
+     * @return the instance of FilledRenderer
+     */
     public static Renderer getInstance() {
         if (instance == null)
             instance = new FilledRenderer();
