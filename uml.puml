@@ -134,11 +134,7 @@ FactoryBorder -up-|> ShapeFactory
 Bouncers "*" - "1" Display : <repaint
 Display "1" - "1" BorderRenderer : references>
 Display "1" - "1" FilledRenderer : references>
-Bouncers --- FactoryBorder : uses
-Bouncers --- FactoryFilled : uses
-FactoryFilled "1" - "*" CircleFilled : create>
-FactoryFilled "1" - "*" SquareFilled : create>
-FactoryBorder "1" - "*" CircleBorder : create>
-FactoryBorder "1" - "*" SquareBorder : create>
+Bouncers "1" - "2" ShapeFactory : uses
+Bouncers "1" - "*" Bouncable : owns
 
 @enduml
