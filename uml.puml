@@ -93,11 +93,11 @@ class SquareFilled {
 }
 
 class CircleBorder {
-+CircleStroke()
++CircleBorder()
 }
 
 class SquareBorder {
-+SquareStroke()
++SquareBorder()
 }
 
 interface ShapeFactory {
