@@ -133,8 +133,8 @@ SquareBorder -up-|> Square
 FactoryFilled -up-|> ShapeFactory
 FactoryBorder -up-|> ShapeFactory
 
-Display "1" - "2" Renderer : references>
-Bouncers "1" - "2" ShapeFactory : uses>
-Bouncable "*" - "1"Bouncers : is owned>
+Display "1" -- "2" Renderer : references>
+Bouncers "1" -- "2" ShapeFactory : uses>
+Bouncable "*" -- "1"Bouncers : is owned>
 
 @enduml
